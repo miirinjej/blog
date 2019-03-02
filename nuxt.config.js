@@ -46,6 +46,32 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    [ 'nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        {
+          set: '@fortawesome/free-brands-svg-icons',
+          icons: [
+            'faFacebookF',
+            'faTwitter',
+            'faGooglePlusG',
+          ],
+        },
+        {
+          set: '@fortawesome/free-regular-svg-icons',
+          icons: [
+            'faEnvelope',
+          ],
+        },
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: [
+            'faSearch',
+          ],
+        },
+      ],
+    }],
+    'nuxt-webfontloader',
   ],
 
   /*
@@ -55,6 +81,19 @@ module.exports = {
     scss: [
       '~/assets/scss/*/*.scss',
     ],
+  },
+
+  /*
+  ** Web font loader
+  */
+  webfontloader: {
+    google: {
+      families: [
+        'Alegreya:400,700',
+        'Roboto:300,400,500,700',
+        'Source+Sans+Pro:300,400,600,700',
+      ],
+    },
   },
 
   /*
