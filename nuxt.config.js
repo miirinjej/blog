@@ -45,7 +45,17 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
   ],
+
+  /*
+  ** Style resources
+  */
+  styleResources: {
+    scss: [
+      '~/assets/scss/*/*.scss',
+    ],
+  },
 
   /*
   ** Build configuration
