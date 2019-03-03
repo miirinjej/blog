@@ -1,0 +1,10 @@
+body {
+  font-family: $font-family--roboto;
+  color: $color-name--black;
+}
+
+h2 {
+  font-family: $font-family--alegreya;
+  font-size: calculate-rem(30);
+  font-weight: 700;
+}

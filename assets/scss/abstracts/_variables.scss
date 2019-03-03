@@ -1,0 +1,34 @@
+/// Font family property declaration
+///
+/// @access public
+///
+/// @author Radmir Nabiullin
+///
+/// @type List
+$font-family--alegreya: ("Alegreya", serif);
+$font-family--roboto: ("Roboto", sans-serif);
+$font-family--source-sans-pro: ("Source Sans Pro", sans-serif);
+
+
+/// Color names and their shades divided by underscore,
+/// used by box shadows, gradients and functional variables
+///
+/// @access public
+///
+/// @author Radmir Nabiullin
+///
+/// @type Color
+$color-name--alto: #d4d4d4;
+$color-name--black: #000000;
+$color-name--chambray: #3c5a9a;
+$color-name--cod-gray: #070505;
+$color-name--ebony: #080c1e;
+$color-name--malibu: #58ccff;
+$color-name--mercury: #e1e1e1;
+$color-name--mine-shaft: #282828;
+$color-name--punch: #de4b39;
+$color-name--royal-blue: #3853d8;
+$color-name--timberwolf: #d9d6cf;
+$color-name--white: #ffffff;
+
+
