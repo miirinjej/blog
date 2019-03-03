@@ -1,6 +1,5 @@
 const pkg = require('./package');
 
-
 module.exports = {
   mode: 'universal',
 
@@ -31,6 +30,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~assets/stylus/app.styl',
     { src: 'normalize.css' },
   ],
 
@@ -38,6 +38,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/vuetify.js',
   ],
 
   /*
@@ -100,6 +101,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    transpile: [ /^vuetify/ ],
     /*
     ** You can extend webpack config here
     */
