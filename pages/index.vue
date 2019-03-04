@@ -5,15 +5,14 @@
         Créatif blog
       </div>
       <div class="main-header__toggle-button"></div>
-      <label for="main-header__search-bar">
-        Search here
-        <input
-          id="main-header__search-bar"
-          class="main-header__search-bar"
-          type="search"
-          name="main-header__search-bar"
-        >
-      </label>
+      <v-text-field
+        class="main-header__search-bar"
+        append-outer-icon="search"
+        background-color="transparent"
+        label="Search here"
+        outline
+        type="search"
+      />
     </header>
     <section class="main-content">
       <section class="posts">
@@ -184,4 +183,87 @@
 </script>
 
 <style lang="scss">
+  @media only screen and (min-width: 79em) {
+    .main-header {
+      height: calculate-rem(481);
+      background: $color-name--black url(/main-header/background/lg.jpg) 0 0 no-repeat;
+      background-size: cover;
+    }
+
+    .main-header__brand-name {
+      position: relative;
+      font-family: $font-family--source-sans-pro;
+      font-size: calculate-rem(36);
+      color: $color-name--white;
+      text-transform: uppercase;
+
+      &::after {
+        position: absolute;
+        bottom: calculate-rem(-10);
+        left: 0;
+        width: calculate-rem(100);
+        height: 4px;
+        content: "";
+        background: $color-name--royal-blue;
+      }
+    }
+
+    .main-header__toggle-button {
+      position: relative;
+      width: calculate-rem(51);
+      height: 5px;
+      margin-top: 40px;
+      background: $color-name--white;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        bottom: calculate-rem(-10);
+        width: calculate-rem(41);
+        height: 5px;
+        content: "";
+        background: $color-name--white;
+      }
+    }
+
+    .main-header__search-bar {
+      width: calculate-rem(501);
+      height: calculate-rem(60);
+      opacity: 0.9;
+
+      .v-input__control {
+        width: 83.43313373253%;
+        height: 100%;
+        background: $color-name--white;
+      }
+
+      .v-label {
+        margin-left: 5px;
+        font-family: $font-family--source-sans-pro;
+        font-size: calculate-rem(14);
+        font-weight: 600;
+        color: $color-name--royal-blue;
+        text-transform: uppercase;
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+      }
+
+      input[type="search"] {
+        padding-left: 5px;
+      }
+
+      .v-input__append-outer.v-input__append-outer {
+        align-items: center;
+        width: 16.56686626746%;
+        height: 100%;
+        margin: 0;
+        color: $color-name--white;
+        cursor: pointer;
+        background: $color-name--royal-blue;
+
+        .v-icon {
+          font-size: calculate-rem(32);
+        }
+      }
+    }
+  }
 </style>
