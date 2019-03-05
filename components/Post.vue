@@ -7,7 +7,7 @@
       :class="{ 'is-shortened': post.isShortened }"
     >
       <header class="post__header">
-        <picture>
+        <picture class="post__picture">
           <source
             :srcset="`${post.imageUrl}.webp`"
             type="image/webp"
@@ -21,12 +21,13 @@
             :alt="`${post.imageUrl.match(/\w+$/i)}`"
           >
         </picture>
-        <time class="post__date post__date--primary">
-          {{ post.date.match(/^\d+\s\w+\b/i).join() }}
+        <time class="post__date post__date--primary text-xs-center">
+          <span class="d-block">{{ post.date.match(/^\d+/).join() }}</span>
+          <span class="d-block">{{ post.date.match(/\s\w+\b/i).join() }}</span>
         </time>
-        <button class="post__read-button post__read-button--secondary">
+        <v-btn class="post__read-button post__read-button--secondary">
           Read more
-        </button>
+        </v-btn>
       </header>
       <section class="post__content">
         <div>
@@ -38,7 +39,7 @@
             {{ post.category }}
           </span>
         </div>
-        <div>
+        <div class="post__author author">
           <img
             class="author__avatar"
             :src="post.authorAvatar"
@@ -46,7 +47,7 @@
           >
           <div
             v-show="!post.isShortened"
-            class="post__author author"
+            class="author__title"
           >
             Author
             |
@@ -110,10 +111,59 @@
       <section class="post__text">
         {{ shortenText(post.text) }}
       </section>
-      <button class="post__read-button post__read-button--primary">
+      <v-btn class="post__read-button post__read-button--primary">
         Read
-      </button>
+      </v-btn>
     </article>
+    <svg>
+      <filter
+        id="royal-blue"
+        x="-10%"
+        y="-10%"
+        width="120%"
+        height="120%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feColorMatrix
+          type="matrix"
+          values=".33 .33 .33 0 0
+            .33 .33 .33 0 0
+            .33 .33 .33 0 0
+            0 0 0 1 0"
+          in="SourceGraphic"
+          result="colormatrix"
+        />
+        <feComponentTransfer
+          in="colormatrix"
+          result="componentTransfer"
+        >
+          <feFuncR
+            type="table"
+            tableValues="0.22 0.22"
+          />
+          <feFuncG
+            type="table"
+            tableValues="0.33 0.33"
+          />
+          <feFuncB
+            type="table"
+            tableValues="0.85 0.85"
+          />
+          <feFuncA
+            type="table"
+            tableValues="0 0.5"
+          />
+        </feComponentTransfer>
+        <feBlend
+          mode="normal"
+          in="componentTransfer"
+          in2="SourceGraphic"
+          result="blend"
+        />
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -123,7 +173,6 @@
     props: {
       posts: {
         type: Array,
-        required: true,
         validator(value) {
           for (let i = 0; i < value.length; i += 1) {
             if (typeof value[i].id !== 'number') {
@@ -139,6 +188,9 @@
               return false;
             }
             if (typeof value[i].category !== 'string') {
+              return false;
+            }
+            if (typeof value[i].authorAvatar !== 'string') {
               return false;
             }
             if (typeof value[i].author !== 'string') {
@@ -170,5 +222,97 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .post {
+    margin-bottom: calculate-rem(50);
+    font-family: $font-family--roboto;
+    font-size: calculate-rem(14);
+    font-weight: 700;
+    color: $color-name--royal-blue;
+    text-transform: uppercase;
+  }
+
+  .post__header {
+    position: relative;
+    margin-bottom: calculate-rem(13);
+
+    &:hover {
+      .v-btn.post__read-button--secondary {
+        opacity: 1;
+      }
+    }
+  }
+
+  .post__picture {
+    transition: filter 0.5s;
+
+    .post__header:hover & {
+      filter: url(#royal-blue);
+    }
+  }
+
+  .v-btn.v-btn.post__read-button {
+    width: calculate-rem(109);
+    height: calculate-rem(40);
+    color: $color-name--white;
+    background: $color-name--royal-blue;
+    border-radius: 0;
+    box-shadow: 0 0 calculate-rem(7) 1px rgba($color-name--black, 0.29);
+
+    &--secondary {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calculate-rem(122);
+      height: calculate-rem(43);
+      color: $color-name--royal-blue;
+      background: rgba($color-name--white, 0.8);
+      box-shadow: 0 0 calculate-rem(21) rgba($color-name--black, 0.45);
+      opacity: 0;
+      transition: opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .post__content {
+    margin-bottom: calculate-rem(23);
+  }
+
+  .post__date {
+    &--primary {
+      position: absolute;
+      top: calculate-rem(20);
+      left: calculate-rem(20);
+      width: calculate-rem(63);
+      height: calculate-rem(63);
+      font-family: $font-family--alegreya;
+      font-size: calculate-rem(24);
+      font-weight: 700;
+      color: $color-name--white;
+      text-transform: none;
+      background: rgba($color-name--royal-blue, 0.8);
+      transition: all 0.2s;
+
+      .post__header:hover & {
+        display: none;
+      }
+    }
+  }
+
+  .author__name,
+  .comments__count {
+    font-weight: 400;
+  }
+
+  .post__text {
+    margin-bottom: calculate-rem(12);
+    font-family: $font-family--alegreya;
+    font-size: calculate-rem(26);
+    color: $color-name--ebony;
+    text-transform: none;
+  }
+
+  .share__list {
+    @extend %list;
+  }
 </style>

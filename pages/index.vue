@@ -188,7 +188,7 @@
           },
           {
             id: 3,
-            isshortened: false,
+            isShortened: false,
             imageUrl: '/posts/3/food',
             date: '30 Mar 2016',
             category: 'Lifestyle',
