@@ -17,7 +17,14 @@
     <section class="main-content">
       <section class="posts">
         <post :posts="posts" />
-        <nav class="posts__pagination"></nav>
+        <v-pagination
+          v-model="page"
+          class="posts__pagination"
+          :length="50"
+          prev-icon=""
+          next-icon=""
+          total-visible="8"
+        />
       </section>
       <aside class="sidebar">
         <section class="sidebar__section categories">
@@ -220,12 +227,22 @@
               + 'and design managers.',
           },
         ],
+        page: 4,
       };
     },
   };
 </script>
 
 <style lang="scss">
+  @media only screen {
+    .posts__pagination {
+      li:first-child,
+      li:last-child {
+        display: none;
+      }
+    }
+  }
+
   @media only screen and (min-width: 79em) {
     .main-header {
       height: calculate-rem(481);
