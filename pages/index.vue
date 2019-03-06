@@ -240,6 +240,21 @@
       li:last-child {
         display: none;
       }
+
+      .v-pagination__item.v-pagination__item {
+        width: calculate-rem(48);
+        height: calculate-rem(48);
+        padding: 0;
+        margin: 0;
+        font-weight: 700;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .v-pagination__item--active.v-pagination__item--active {
+        color: $color-name--white;
+        background: $color-name--royal-blue;
+      }
     }
   }
 
