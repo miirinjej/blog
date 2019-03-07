@@ -244,8 +244,6 @@
   }
 
   .post__picture {
-    transition: filter 0.5s;
-
     .post__header:hover & {
       filter: url(#royal-blue);
     }
