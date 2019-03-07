@@ -26,48 +26,11 @@
           total-visible="8"
         />
       </section>
-      <aside class="sidebar">
-        <section class="sidebar__section categories">
-          <h2 class="sidebar__heading">
-            Categories
-          </h2>
-          <ul class="categories__list">
-            <li class="categories__item">
-              Sports
-            </li>
-          </ul>
-        </section>
-        <section class="sidebar__section tags">
-          <h2 class="sidebar__heading">
-            Tags
-          </h2>
-          <ul class="tags__list">
-            <li class="tags__item">
-              Food
-            </li>
-          </ul>
-        </section>
-        <section class="sidebar__section gallery">
-          <ul class="gallery__list">
-            <li class="gallery__item">
-              <picture>
-                <source
-                  srcset=""
-                  type="image/webp"
-                >
-                <source
-                  srcset=""
-                  type="image/jpeg"
-                >
-                <img
-                  src=""
-                  alt=""
-                >
-              </picture>
-            </li>
-          </ul>
-        </section>
-      </aside>
+      <sidebar
+        :categories="categories"
+        :tags="tags"
+        :gallery="gallery"
+      />
     </section>
     <section class="subscribe-section">
       <h2 class="subscribe-section__heading"></h2>
@@ -138,10 +101,12 @@
 
 <script>
   import Post from '~/components/Post';
+  import Sidebar from '~/components/Sidebar';
 
   export default {
     components: {
       Post,
+      Sidebar,
     },
     data() {
       return {
@@ -228,6 +193,87 @@
           },
         ],
         page: 4,
+        categories: [
+          {
+            name: 'Sports',
+            isGrouped: false,
+            isActive: false,
+          },
+          {
+            name: 'Lifestyle',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Love',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Travel',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Technology',
+            isGrouped: false,
+            isActive: false,
+          },
+          {
+            name: 'Art',
+            isGrouped: false,
+            isActive: false,
+          },
+          {
+            name: 'Photography',
+            isGrouped: false,
+            isActive: false,
+          },
+          {
+            name: 'Business',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Design',
+            isGrouped: false,
+            isActive: false,
+          },
+          {
+            name: 'Dramas',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Home',
+            isGrouped: true,
+            isActive: false,
+          },
+          {
+            name: 'Health',
+            isGrouped: false,
+            isActive: false,
+          },
+        ],
+        tags: [
+          'Food',
+          'Photography',
+          'Web design',
+          'Art',
+          'Love',
+          'Business',
+        ],
+        gallery: [
+          '/sidebar/gallery/0.jpg',
+          '/sidebar/gallery/1.jpg',
+          '/sidebar/gallery/2.jpg',
+          '/sidebar/gallery/3.jpg',
+          '/sidebar/gallery/4.jpg',
+          '/sidebar/gallery/5.jpg',
+          '/sidebar/gallery/6.jpg',
+          '/sidebar/gallery/7.jpg',
+          '/sidebar/gallery/8.jpg',
+        ],
       };
     },
   };
