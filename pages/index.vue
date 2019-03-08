@@ -33,17 +33,20 @@
       />
     </section>
     <section class="subscribe-section">
-      <h2 class="subscribe-section__heading"></h2>
-      <p class="subscribe-section__description"></p>
-      <label for="subscribe-section__subscribe-bar">
-        Email
-        <input
-          id="subscribe-section__subscribe-bar"
-          class="subscribe-section__subscribe-bar"
-          type="search"
-          name="subscribe-section__subscribe-bar"
-        >
-      </label>
+      <h2 class="subscribe-section__heading">
+        Subscribe to our newsletter
+      </h2>
+      <p class="subscribe-section__description">
+        Enter here your email to subscribe to my mailing list
+      </p>
+      <v-text-field
+        class="subscribe-section__email-bar"
+        append-outer-icon="mail_outline"
+        background-color="transparent"
+        label="Email"
+        outline
+        type="email"
+      />
     </section>
     <footer class="main-footer">
       <div class="follow">
@@ -347,7 +350,8 @@
       }
     }
 
-    .main-header__search-bar {
+    .main-header__search-bar,
+    .subscribe-section__email-bar {
       width: calculate-rem(501);
       height: calculate-rem(60);
       opacity: 0.9;
@@ -368,10 +372,6 @@
         transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
       }
 
-      input[type="search"] {
-        padding-left: 5px;
-      }
-
       .v-input__append-outer.v-input__append-outer {
         align-items: center;
         width: 16.56686626746%;
@@ -384,6 +384,36 @@
         .v-icon {
           font-size: calculate-rem(32);
         }
+      }
+    }
+
+    .subscribe-section {
+      height: calculate-rem(332);
+      padding-top: calculate-rem(91);
+      color: $color-name--white;
+      background: $color-name--black url(/subscribe/background/lg.jpg) 0 0 no-repeat;
+    }
+
+    .subscribe-section__heading {
+      margin-bottom: calculate-rem(6);
+      font-family: $font-family--alegreya;
+      font-size: calculate-rem(20);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .subscribe-section__description {
+      margin-bottom: calculate-rem(35);
+      font-family: $font-family--source-sans-pro;
+      font-size: calculate-rem(14);
+    }
+
+    .subscribe-section__email-bar {
+      width: calculate-rem(400);
+      opacity: 0.8;
+
+      .v-icon {
+        font-size: calculate-rem(24);
       }
     }
   }
