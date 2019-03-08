@@ -51,7 +51,7 @@
     <footer class="main-footer">
       <div class="follow">
         <ul class="follow__list">
-          <li class="follow__item">
+          <li class="follow__item follow__item--facebook">
             <a
               class="link"
               href="https://www.facebook.com/"
@@ -65,7 +65,7 @@
               />
             </a>
           </li>
-          <li class="follow__item">
+          <li class="follow__item follow__item--twitter">
             <a
               class="link"
               href="https://twitter.com/"
@@ -79,7 +79,7 @@
               />
             </a>
           </li>
-          <li class="follow__item">
+          <li class="follow__item follow__item--google-plus">
             <a
               class="link"
               href="https://plus.google.com/"
@@ -415,6 +415,56 @@
       .v-icon {
         font-size: calculate-rem(24);
       }
+    }
+
+    .main-footer {
+      height: calculate-rem(245);
+      padding-top: calculate-rem(145);
+    }
+
+    .follow__list {
+      display: flex;
+      margin-bottom: calculate-rem(24);
+      list-style: none;
+    }
+
+    .follow__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calculate-rem(24);
+      height: calculate-rem(24);
+      margin-right: calculate-rem(6);
+      font-size: calculate-rem(14);
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &--facebook {
+        background: $color-name--chambray;
+      }
+
+      &--twitter {
+        background: $color-name--malibu;
+      }
+
+      &--google-plus {
+        background: $color-name--punch;
+      }
+
+      &:hover {
+        background: $color-name--mine-shaft;
+      }
+    }
+
+    .link {
+      color: $color-name--white;
+    }
+
+    .main-footer__copyright {
+      font-size: calculate-rem(13);
+      font-weight: 500;
     }
   }
 </style>
