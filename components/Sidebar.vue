@@ -60,11 +60,20 @@
             :key="index"
             class="gallery__item"
           >
-            <img
-              class="gallery__image"
-              :src="image"
-              :alt="image.replace(/(\/\w+\/\w+\/)(\w+)(\.jpg)/i, '$2')"
-            >
+            <picture class="post__picture">
+              <source
+                :srcset="`${image}.webp`"
+                type="image/webp"
+              >
+              <source
+                :srcset="`${image}.jpg`"
+                type="image/jpeg"
+              >
+              <img
+                :src="image"
+                :alt="image.replace(/(\/\w+\/\w+\/)(\w+)(\.\w+)/i, '$2')"
+              >
+            </picture>
           </li>
         </ul>
       </div>

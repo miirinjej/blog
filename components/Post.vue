@@ -9,18 +9,33 @@
       <header class="post__header">
         <picture class="post__picture">
           <source
-            :media="post.isShortened ? '(max-width: 599px) or (min-width: 1264px)' : '(max-width: 599px)'"
+            media="(max-width: 599px)"
+            :srcset="`${post.imageUrl}xs.webp`"
+            type="image/webp"
+          >
+          <source
+            media="(max-width: 599px)"
             :srcset="`${post.imageUrl}xs.jpg`"
             type="image/jpeg"
           >
           <source
-            media="(min-width: 600px)"
+            media="(min-width: 600px) and (max-width: 1263px)"
             :srcset="`${post.imageUrl}sm.webp`"
             type="image/webp"
           >
           <source
-            media="(min-width: 600px)"
+            media="(min-width: 600px) and (max-width: 1263px)"
             :srcset="`${post.imageUrl}sm.jpg`"
+            type="image/jpeg"
+          >
+          <source
+            media="(min-width: 1264px)"
+            :srcset="post.isShortened ? `${post.imageUrl}xs.webp` : `${post.imageUrl}sm.webp`"
+            type="image/webp"
+          >
+          <source
+            media="(min-width: 1264px)"
+            :srcset="post.isShortened ? `${post.imageUrl}xs.jpg` : `${post.imageUrl}sm.jpg`"
             type="image/jpeg"
           >
           <img

@@ -3,7 +3,7 @@
     tag="main"
     fluid
   >
-    <header class="main-header">
+    <header class="main-header js-webp">
       <v-layout
         fill-height="true"
         wrap
@@ -108,7 +108,7 @@
         </v-flex>
       </v-layout>
     </section>
-    <section class="subscribe-section">
+    <section class="subscribe-section js-webp">
       <v-layout
         column
         align-center="true"
@@ -363,15 +363,15 @@
           'Business',
         ],
         gallery: [
-          '/sidebar/gallery/0.jpg',
-          '/sidebar/gallery/1.jpg',
-          '/sidebar/gallery/2.jpg',
-          '/sidebar/gallery/3.jpg',
-          '/sidebar/gallery/4.jpg',
-          '/sidebar/gallery/5.jpg',
-          '/sidebar/gallery/6.jpg',
-          '/sidebar/gallery/7.jpg',
-          '/sidebar/gallery/8.jpg',
+          '/sidebar/gallery/0',
+          '/sidebar/gallery/1',
+          '/sidebar/gallery/2',
+          '/sidebar/gallery/3',
+          '/sidebar/gallery/4',
+          '/sidebar/gallery/5',
+          '/sidebar/gallery/6',
+          '/sidebar/gallery/7',
+          '/sidebar/gallery/8',
         ],
         categoriesHeadingHeight: 43.5,
       };
@@ -380,6 +380,25 @@
       const categoriesHeading = document.querySelector('.sidebar__heading');
       const categoriesHeadingMarginBottom = parseInt(window.getComputedStyle(categoriesHeading, null).getPropertyValue('margin-bottom'));
       this.categoriesHeadingHeight = categoriesHeading.offsetHeight + categoriesHeadingMarginBottom;
+
+
+      const webpElements = document.querySelectorAll('.js-webp');
+
+      async function supportsWebp() {
+        if (!self.createImageBitmap) return false;
+
+        const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+        const blob = await fetch(webpData).then(r => r.blob());
+        return createImageBitmap(blob).then(() => true, () => false);
+      }
+
+      (async () => {
+        if (await supportsWebp()) {
+          webpElements.forEach(e => e.classList.add('webp'));
+        } else {
+          webpElements.forEach(e => e.classList.add('no-webp'));
+        }
+      })();
     },
   };
 </script>
@@ -396,22 +415,40 @@
   .main-header {
     @include get-rem(padding, 25, 10);
     height: calculate-rem(281);
-    background: $color-name--black url(/main-header/background/xs.jpg) 0 0 no-repeat;
-    background-size: cover;
-
-    @include mq($from: sm) {
-      background: $color-name--black url(/main-header/background/sm.jpg) 0 0 no-repeat;
-      background-size: cover;
-    }
-
-    @include mq($from: md) {
-      background: $color-name--black url(/main-header/background/md.jpg) 0 0 no-repeat;
-      background-size: cover;
-    }
 
     @include mq($from: lg) {
       height: calculate-rem(481);
       padding: calculate-rem(50) 4.85714285714% calculate-rem(140);
+    }
+
+    &.no-webp {
+      background: $color-name--black url(/main-header/background/xs.jpg) 0 0 no-repeat;
+      background-size: cover;
+
+      @include mq($from: sm) {
+        background: $color-name--black url(/main-header/background/sm.jpg) 0 0 no-repeat;
+        background-size: cover;
+      }
+
+      @include mq($from: md) {
+        background: $color-name--black url(/main-header/background/md.jpg) 0 0 no-repeat;
+        background-size: cover;
+      }
+    }
+
+    &.webp {
+      background: $color-name--black url(/main-header/background/xs.webp) 0 0 no-repeat;
+      background-size: cover;
+
+      @include mq($from: sm) {
+        background: $color-name--black url(/main-header/background/sm.webp) 0 0 no-repeat;
+        background-size: cover;
+      }
+
+      @include mq($from: md) {
+        background: $color-name--black url(/main-header/background/md.webp) 0 0 no-repeat;
+        background-size: cover;
+      }
     }
 
     .flex {
@@ -604,17 +641,35 @@
     z-index: 20;
     height: calculate-rem(332);
     color: $color-name--white;
-    background: $color-name--black url(/subscribe/background/xs.jpg) 0 0 no-repeat;
-    background-size: cover;
 
-    @include mq($from: sm) {
-      background: $color-name--black url(/subscribe/background/sm.jpg) 0 0 no-repeat;
+    &.no-webp {
+      background: $color-name--black url(/subscribe/background/xs.jpg) 0 0 no-repeat;
       background-size: cover;
+
+      @include mq($from: sm) {
+        background: $color-name--black url(/subscribe/background/sm.jpg) 0 0 no-repeat;
+        background-size: cover;
+      }
+
+      @include mq($from: md) {
+        background: $color-name--black url(/subscribe/background/md.jpg) 0 0 no-repeat;
+        background-size: cover;
+      }
     }
 
-    @include mq($from: md) {
-      background: $color-name--black url(/subscribe/background/md.jpg) 0 0 no-repeat;
+    &.webp {
+      background: $color-name--black url(/subscribe/background/xs.webp) 0 0 no-repeat;
       background-size: cover;
+
+      @include mq($from: sm) {
+        background: $color-name--black url(/subscribe/background/sm.webp) 0 0 no-repeat;
+        background-size: cover;
+      }
+
+      @include mq($from: md) {
+        background: $color-name--black url(/subscribe/background/md.webp) 0 0 no-repeat;
+        background-size: cover;
+      }
     }
 
     .flex {
