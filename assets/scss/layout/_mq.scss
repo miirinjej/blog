@@ -1,0 +1,8 @@
+@import "~sass-mq";
+
+
+@include mq-add-breakpoint(sm, 600px);
+@include mq-add-breakpoint(md, 960px);
+@include mq-add-breakpoint(lg, 1264px);
+@include mq-add-breakpoint(xl, 1904px);
+@include mq-add-breakpoint(xxl, 3840px);

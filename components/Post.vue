@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-layout wrap>
     <article
       v-for="post in posts"
       :key="post.id"
@@ -9,16 +9,23 @@
       <header class="post__header">
         <picture class="post__picture">
           <source
-            :srcset="`${post.imageUrl}.webp`"
+            :media="post.isShortened ? '(max-width: 599px) or (min-width: 1264px)' : '(max-width: 599px)'"
+            :srcset="`${post.imageUrl}xs.jpg`"
+            type="image/jpeg"
+          >
+          <source
+            media="(min-width: 600px)"
+            :srcset="`${post.imageUrl}sm.webp`"
             type="image/webp"
           >
           <source
-            :srcset="`${post.imageUrl}.jpg`"
+            media="(min-width: 600px)"
+            :srcset="`${post.imageUrl}sm.jpg`"
             type="image/jpeg"
           >
           <img
-            :src="`${post.imageUrl}.jpg`"
-            :alt="`${post.imageUrl.match(/\w+$/i)}`"
+            :src="`${post.imageUrl}sm.jpg`"
+            :alt="post.imageUrl.replace(/(\/posts\/)(\w+)(\/)/i, '$2')"
           >
         </picture>
         <time class="post__date post__date--primary text-xs-center">
@@ -39,24 +46,29 @@
             {{ post.category }}
           </span>
         </div>
-        <div class="post__author author">
+        <v-layout
+          align-center="true"
+          justify-end="true"
+        >
           <img
             class="author__avatar"
             :src="post.authorAvatar"
             alt="author avatar"
           >
-          <div
-            v-show="!post.isShortened"
-            class="author__title"
-          >
-            Author
-            |
-            <span class="author__name">
-              {{ post.author }}
-            </span>
+          <div class="post__author author">
+            <div
+              :class="{ 'is-hidden': post.isShortened && ($mq === 'lg' || $mq === 'xl') }"
+              class="author__title"
+            >
+              Author
+              |
+              <span class="author__name">
+                {{ post.author }}
+              </span>
+            </div>
           </div>
           <div
-            v-show="!post.isShortened"
+            :class="{ 'is-hidden': post.isShortened && ($mq === 'lg' || $mq === 'xl') }"
             class="post__comments comments"
           >
             Comments
@@ -66,7 +78,9 @@
             </span>
           </div>
           <div class="post__share share">
-            <span v-show="!post.isShortened">
+            <span
+              :class="{ 'is-hidden': post.isShortened && ($mq === 'lg' || $mq === 'xl') }"
+            >
               Share
               |
             </span>
@@ -106,7 +120,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </v-layout>
       </section>
       <section class="post__text">
         {{ shortenText(post.text) }}
@@ -115,7 +129,7 @@
         Read
       </v-btn>
     </article>
-    <svg>
+    <svg style="height: 0;">
       <filter
         id="royal-blue"
         x="-10%"
@@ -164,7 +178,7 @@
         />
       </filter>
     </svg>
-  </div>
+  </v-layout>
 </template>
 
 <script>
@@ -213,8 +227,8 @@
     },
     methods: {
       shortenText(text) {
-        if (text.length > 128) {
-          return `${text.substr(0, 128)} ...`;
+        if (text.length > 96) {
+          return `${text.substr(0, 96)} ...`;
         }
         return text;
       },
@@ -224,12 +238,25 @@
 
 <style lang="scss" scoped>
   .post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: calculate-rem(50);
     font-family: $font-family--roboto;
     font-size: calculate-rem(14);
     font-weight: 700;
     color: $color-name--royal-blue;
     text-transform: uppercase;
+
+    @include mq($from: lg) {
+      &.is-shortened {
+        width: 48.25%;
+
+        ~ .is-shortened {
+          margin-left: 3.5%;
+        }
+      }
+    }
   }
 
   .post__header {
@@ -244,12 +271,18 @@
   }
 
   .post__picture {
+    img {
+      height: 320px;
+      object-fit: cover;
+    }
+
     .post__header:hover & {
       filter: url(#royal-blue);
     }
   }
 
   .v-btn.v-btn.post__read-button {
+    align-self: flex-start;
     width: calculate-rem(109);
     height: calculate-rem(40);
     color: $color-name--white;
@@ -273,6 +306,10 @@
   }
 
   .post__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: calculate-rem(23);
   }
 
@@ -297,6 +334,39 @@
     }
   }
 
+  .author {
+    @include mq($from: md) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .author,
+  .comments {
+    display: none;
+    margin-right: calculate-rem(15);
+
+    @include mq($from: sm) {
+      display: inline-block;
+    }
+
+    @include mq($from: md) {
+      display: none;
+    }
+
+    @include mq($from: lg) {
+      display: inline-block;
+    }
+  }
+
+  .author__avatar {
+    margin-right: calculate-rem(11);
+
+    @include mq($until: sm) {
+      margin-right: calculate-rem(8);
+    }
+  }
+
   .author__name,
   .comments__count {
     font-weight: 400;
@@ -307,10 +377,44 @@
     font-family: $font-family--alegreya;
     font-size: calculate-rem(26);
     color: $color-name--ebony;
+    text-align: justify;
     text-transform: none;
+  }
+
+  .share {
+    display: flex;
+
+    span {
+      display: none;
+
+      @include mq($from: sm) {
+        display: inline-block;
+      }
+
+      @include mq($from: md) {
+        display: none;
+      }
+
+      @include mq($from: lg) {
+        display: inline-block;
+      }
+
+      &.is-hidden {
+        display: none;
+      }
+    }
   }
 
   .share__list {
     @extend %list;
+    display: flex;
+  }
+
+  .link {
+    color: $color-name--royal-blue;
+  }
+
+  .is-hidden {
+    display: none;
   }
 </style>

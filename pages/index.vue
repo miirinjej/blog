@@ -1,105 +1,201 @@
 <template>
-  <main>
+  <v-container
+    tag="main"
+    fluid
+  >
     <header class="main-header">
-      <div class="main-header__brand-name">
-        Créatif blog
-      </div>
-      <div class="main-header__toggle-button"></div>
-      <v-text-field
-        class="main-header__search-bar"
-        append-outer-icon="search"
-        background-color="transparent"
-        label="Search here"
-        outline
-        type="search"
-      />
+      <v-layout
+        fill-height="true"
+        wrap
+        justify-space-between="true"
+      >
+        <v-flex
+          xs12
+          lg2
+          offset-lg1
+          offset-xl2
+        >
+          <div class="main-header__brand-name">
+            Créatif blog
+          </div>
+        </v-flex>
+        <v-flex
+          xs12
+          lg2
+          order-lg3
+        >
+          <div class="main-header__toggle-button"></div>
+        </v-flex>
+        <v-flex
+          xs12
+          align-self-end="true"
+        >
+          <v-text-field
+            class="main-header__search-bar"
+            append-outer-icon="search"
+            background-color="transparent"
+            label="Search here"
+            outline
+            type="search"
+          />
+        </v-flex>
+        <v-flex
+          xs0
+          lg1
+          xl2
+          order-lg4
+          class="spacer"
+        >
+          <v-spacer />
+        </v-flex>
+      </v-layout>
     </header>
     <section class="main-content">
-      <section class="posts">
-        <post :posts="posts" />
-        <v-pagination
-          v-model="page"
-          class="posts__pagination"
-          :length="50"
-          prev-icon=""
-          next-icon=""
-          total-visible="8"
-        />
-      </section>
-      <sidebar
-        :categories="categories"
-        :tags="tags"
-        :gallery="gallery"
-      />
+      <v-layout
+        wrap
+      >
+        <v-flex
+          xs12
+          md6
+          xl6
+          offset-md1
+          offset-xl0
+          order-md2
+        >
+          <section
+            class="posts"
+            :style="{ marginTop: categoriesHeadingHeight + 'px' }"
+          >
+            <post :posts="posts" />
+            <v-flex
+              xs12
+            >
+              <v-pagination
+                v-model="page"
+                class="posts__pagination"
+                :length="50"
+                prev-icon=""
+                next-icon=""
+                :total-visible="$mq | mq({ xs: 7, sm: 8 })"
+              />
+            </v-flex>
+          </section>
+        </v-flex>
+        <v-flex
+          xs12
+          md3
+          lg3
+          xl2
+          offset-lg1
+          offset-xl2
+          order-md1
+          align-self-start="true"
+        >
+          <sidebar
+            :categories="categories"
+            :tags="tags"
+            :gallery="gallery"
+          />
+        </v-flex>
+        <v-flex
+          xs0
+          lg1
+          xl2
+          order-md3
+          class="spacer"
+        >
+          <v-spacer />
+        </v-flex>
+      </v-layout>
     </section>
     <section class="subscribe-section">
-      <h2 class="subscribe-section__heading">
-        Subscribe to our newsletter
-      </h2>
-      <p class="subscribe-section__description">
-        Enter here your email to subscribe to my mailing list
-      </p>
-      <v-text-field
-        class="subscribe-section__email-bar"
-        append-outer-icon="mail_outline"
-        background-color="transparent"
-        label="Email"
-        outline
-        type="email"
-      />
+      <v-layout
+        column
+        align-center="true"
+      >
+        <v-flex>
+          <h2 class="subscribe-section__heading">
+            Subscribe to our newsletter
+          </h2>
+        </v-flex>
+        <v-flex>
+          <p class="subscribe-section__description">
+            Enter here your email to subscribe to my mailing list
+          </p>
+        </v-flex>
+        <v-flex>
+          <v-text-field
+            class="subscribe-section__email-bar"
+            append-outer-icon="mail_outline"
+            background-color="transparent"
+            label="Email"
+            outline
+            type="email"
+          />
+        </v-flex>
+      </v-layout>
     </section>
     <footer class="main-footer">
-      <div class="follow">
-        <ul class="follow__list">
-          <li class="follow__item follow__item--facebook">
-            <a
-              class="link"
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Facebook"
-            >
-              <fa
-                :icon="['fab', 'facebook-f']"
-                fixed-width
-              />
-            </a>
-          </li>
-          <li class="follow__item follow__item--twitter">
-            <a
-              class="link"
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Twitter"
-            >
-              <fa
-                :icon="['fab', 'twitter']"
-                fixed-width
-              />
-            </a>
-          </li>
-          <li class="follow__item follow__item--google-plus">
-            <a
-              class="link"
-              href="https://plus.google.com/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Google Plus"
-            >
-              <fa
-                :icon="['fab', 'google-plus-g']"
-                fixed-width
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="main-footer__copyright">
-        © 2016 Vivek B | All rights Reserved.
-      </div>
+      <v-layout
+        column
+        align-center="true"
+      >
+        <v-flex>
+          <div class="follow">
+            <ul class="follow__list">
+              <li class="follow__item follow__item--facebook">
+                <a
+                  class="link"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Facebook"
+                >
+                  <fa
+                    :icon="['fab', 'facebook-f']"
+                    fixed-width
+                  />
+                </a>
+              </li>
+              <li class="follow__item follow__item--twitter">
+                <a
+                  class="link"
+                  href="https://twitter.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Twitter"
+                >
+                  <fa
+                    :icon="['fab', 'twitter']"
+                    fixed-width
+                  />
+                </a>
+              </li>
+              <li class="follow__item follow__item--google-plus">
+                <a
+                  class="link"
+                  href="https://plus.google.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Google Plus"
+                >
+                  <fa
+                    :icon="['fab', 'google-plus-g']"
+                    fixed-width
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </v-flex>
+        <v-flex>
+          <div class="main-footer__copyright">
+            © 2016 Vivek B | All rights Reserved.
+          </div>
+        </v-flex>
+      </v-layout>
     </footer>
-  </main>
+  </v-container>
 </template>
 
 <script>
@@ -117,7 +213,7 @@
           {
             id: 0,
             isShortened: false,
-            imageUrl: '/posts/0/woman',
+            imageUrl: '/posts/woman/',
             date: '08 Feb 2016',
             category: 'Lifestyle',
             authorAvatar:
@@ -133,7 +229,7 @@
           {
             id: 1,
             isShortened: true,
-            imageUrl: '/posts/1/football',
+            imageUrl: '/posts/football/',
             date: '11 Feb 2016',
             category: 'Sports',
             authorAvatar:
@@ -149,7 +245,7 @@
           {
             id: 2,
             isShortened: true,
-            imageUrl: '/posts/2/city',
+            imageUrl: '/posts/city/',
             date: '20 Mar 2016',
             category: 'Lifestyle',
             authorAvatar:
@@ -164,7 +260,7 @@
           {
             id: 3,
             isShortened: false,
-            imageUrl: '/posts/3/food',
+            imageUrl: '/posts/food/',
             date: '30 Mar 2016',
             category: 'Lifestyle',
             authorAvatar:
@@ -179,7 +275,7 @@
           {
             id: 4,
             isShortened: false,
-            imageUrl: '/posts/4/model',
+            imageUrl: '/posts/model/',
             date: '01 Apr 2016',
             category: 'Lifestyle',
             authorAvatar:
@@ -277,194 +373,334 @@
           '/sidebar/gallery/7.jpg',
           '/sidebar/gallery/8.jpg',
         ],
+        categoriesHeadingHeight: 43.5,
       };
+    },
+    mounted() {
+      const categoriesHeading = document.querySelector('.sidebar__heading');
+      const categoriesHeadingMarginBottom = parseInt(window.getComputedStyle(categoriesHeading, null).getPropertyValue('margin-bottom'));
+      this.categoriesHeadingHeight = categoriesHeading.offsetHeight + categoriesHeadingMarginBottom;
     },
   };
 </script>
 
 <style lang="scss">
-  @media only screen {
-    .posts__pagination {
-      li:first-child,
-      li:last-child {
-        display: none;
-      }
+  .container {
+    padding: 0;
 
-      .v-pagination__item.v-pagination__item {
-        width: calculate-rem(48);
-        height: calculate-rem(48);
-        padding: 0;
-        margin: 0;
-        font-weight: 700;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .v-pagination__item--active.v-pagination__item--active {
-        color: $color-name--white;
-        background: $color-name--royal-blue;
-      }
+    @include mq($from: xxl) {
+      padding: 0 25%;
     }
   }
 
-  @media only screen and (min-width: 79em) {
-    .main-header {
-      height: calculate-rem(481);
-      background: $color-name--black url(/main-header/background/lg.jpg) 0 0 no-repeat;
+  .main-header {
+    @include get-rem(padding, 25, 10);
+    height: calculate-rem(281);
+    background: $color-name--black url(/main-header/background/xs.jpg) 0 0 no-repeat;
+    background-size: cover;
+
+    @include mq($from: sm) {
+      background: $color-name--black url(/main-header/background/sm.jpg) 0 0 no-repeat;
       background-size: cover;
     }
 
-    .main-header__brand-name {
-      position: relative;
-      font-family: $font-family--source-sans-pro;
-      font-size: calculate-rem(36);
-      color: $color-name--white;
-      text-transform: uppercase;
-
-      &::after {
-        position: absolute;
-        bottom: calculate-rem(-10);
-        left: 0;
-        width: calculate-rem(100);
-        height: 4px;
-        content: "";
-        background: $color-name--royal-blue;
-      }
+    @include mq($from: md) {
+      background: $color-name--black url(/main-header/background/md.jpg) 0 0 no-repeat;
+      background-size: cover;
     }
 
-    .main-header__toggle-button {
-      position: relative;
-      width: calculate-rem(51);
-      height: 5px;
-      margin-top: 40px;
-      background: $color-name--white;
-
-      &::after {
-        position: absolute;
-        right: 0;
-        bottom: calculate-rem(-10);
-        width: calculate-rem(41);
-        height: 5px;
-        content: "";
-        background: $color-name--white;
-      }
+    @include mq($from: lg) {
+      height: calculate-rem(481);
+      padding: calculate-rem(50) 4.85714285714% calculate-rem(140);
     }
 
-    .main-header__search-bar,
-    .subscribe-section__email-bar {
-      width: calculate-rem(501);
-      height: calculate-rem(60);
-      opacity: 0.9;
+    .flex {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
 
-      .v-input__control {
-        width: 83.43313373253%;
-        height: 100%;
-        background: $color-name--white;
+      @include mq($from: lg) {
+        justify-content: flex-start;
+
+        &:nth-of-type(2) {
+          justify-content: flex-end;
+        }
       }
 
-      .v-label {
-        margin-left: 5px;
-        font-family: $font-family--source-sans-pro;
-        font-size: calculate-rem(14);
-        font-weight: 600;
-        color: $color-name--royal-blue;
-        text-transform: uppercase;
-        transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-      }
-
-      .v-input__append-outer.v-input__append-outer {
-        align-items: center;
-        width: 16.56686626746%;
-        height: 100%;
-        margin: 0;
-        color: $color-name--white;
-        cursor: pointer;
-        background: $color-name--royal-blue;
-
-        .v-icon {
-          font-size: calculate-rem(32);
+      @include mq($from: sm) {
+        &:nth-of-type(3) {
+          flex-basis: 0;
+          margin: 0 auto;
         }
       }
     }
 
-    .subscribe-section {
-      height: calculate-rem(332);
-      padding-top: calculate-rem(91);
-      color: $color-name--white;
-      background: $color-name--black url(/subscribe/background/lg.jpg) 0 0 no-repeat;
+    .spacer {
+      display: none;
+
+      @include mq($from: lg) {
+        display: flex;
+      }
+    }
+  }
+
+  .main-header__brand-name {
+    position: relative;
+    font-family: $font-family--source-sans-pro;
+    font-size: calculate-rem(36);
+    color: $color-name--white;
+    text-transform: uppercase;
+
+    &::after {
+      position: absolute;
+      bottom: calculate-rem(-10);
+      left: 0;
+      width: calculate-rem(100);
+      height: 4px;
+      content: "";
+      background: $color-name--royal-blue;
+    }
+  }
+
+  .main-header__toggle-button {
+    position: relative;
+    width: calculate-rem(51);
+    height: 5px;
+    background: $color-name--white;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: calculate-rem(-10);
+      width: calculate-rem(41);
+      height: 5px;
+      content: "";
+      background: $color-name--white;
+    }
+  }
+
+  .main-header__search-bar,
+  .subscribe-section__email-bar {
+    height: calculate-rem(60);
+    opacity: 0.9;
+
+    @include mq($from: sm) {
+      width: calculate-rem(501);
     }
 
-    .subscribe-section__heading {
-      margin-bottom: calculate-rem(6);
-      font-family: $font-family--alegreya;
-      font-size: calculate-rem(20);
-      font-weight: 400;
-      text-transform: uppercase;
+    .v-input__control {
+      width: 83.43313373253%;
+      height: 100%;
+      background: $color-name--white;
     }
 
-    .subscribe-section__description {
-      margin-bottom: calculate-rem(35);
+    .v-label {
+      margin-left: 5px;
       font-family: $font-family--source-sans-pro;
       font-size: calculate-rem(14);
+      font-weight: 600;
+      color: $color-name--royal-blue;
+      text-transform: uppercase;
+      transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     }
 
-    .subscribe-section__email-bar {
-      width: calculate-rem(400);
-      opacity: 0.8;
+    .v-input__append-outer.v-input__append-outer {
+      align-items: center;
+      width: 16.56686626746%;
+      height: 100%;
+      margin: 0;
+      color: $color-name--white;
+      cursor: pointer;
+      background: $color-name--royal-blue;
 
       .v-icon {
-        font-size: calculate-rem(24);
+        font-size: calculate-rem(32);
+      }
+    }
+  }
+
+  .main-content {
+    @include get-rem(padding, 25, 10);
+
+    @include mq($from: sm) {
+      padding: calculate-rem(69) 4.85714285714% calculate-rem(129);
+    }
+
+    > .layout {
+      @include mq($from: md, $until: lg) {
+        justify-content: space-around;
+      }
+
+      @include mq($from: lg) {
+        justify-content: space-between;
       }
     }
 
-    .main-footer {
-      height: calculate-rem(245);
-      padding-top: calculate-rem(145);
-    }
-
-    .follow__list {
+    .flex {
       display: flex;
-      margin-bottom: calculate-rem(24);
-      list-style: none;
-    }
-
-    .follow__item {
-      display: flex;
-      align-items: center;
       justify-content: center;
-      width: calculate-rem(24);
-      height: calculate-rem(24);
-      margin-right: calculate-rem(6);
-      font-size: calculate-rem(14);
 
-      &:last-of-type {
-        margin-right: 0;
-      }
+      @include mq($from: md) {
+        justify-content: flex-start;
 
-      &--facebook {
-        background: $color-name--chambray;
-      }
-
-      &--twitter {
-        background: $color-name--malibu;
-      }
-
-      &--google-plus {
-        background: $color-name--punch;
-      }
-
-      &:hover {
-        background: $color-name--mine-shaft;
+        &:nth-of-type(1) {
+          justify-content: flex-end;
+        }
       }
     }
 
-    .link {
+    .spacer {
+      display: none;
+
+      @include mq($from: lg) {
+        display: flex;
+      }
+    }
+  }
+
+  .posts {
+    margin-bottom: calculate-rem(75);
+
+    @include mq($from: md) {
+      margin-bottom: 0;
+    }
+
+    @include mq($from: xl) {
+      width: calculate-rem(800);
+    }
+  }
+
+  .posts__pagination {
+    margin-top: calculate-rem(25);
+
+    @include mq($from: md) {
+      margin-top: calculate-rem(85);
+    }
+
+    li:first-child,
+    li:last-child {
+      display: none;
+    }
+
+    .v-pagination__item.v-pagination__item {
+      width: calculate-rem(48);
+      height: calculate-rem(48);
+      padding: 0;
+      margin: 0;
+      font-weight: 700;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .v-pagination__item--active.v-pagination__item--active {
       color: $color-name--white;
+      background: $color-name--royal-blue;
+    }
+  }
+
+  .subscribe-section {
+    @include get-rem(padding, 91, 10, 0);
+    position: relative;
+    z-index: 20;
+    height: calculate-rem(332);
+    color: $color-name--white;
+    background: $color-name--black url(/subscribe/background/xs.jpg) 0 0 no-repeat;
+    background-size: cover;
+
+    @include mq($from: sm) {
+      background: $color-name--black url(/subscribe/background/sm.jpg) 0 0 no-repeat;
+      background-size: cover;
     }
 
-    .main-footer__copyright {
-      font-size: calculate-rem(13);
-      font-weight: 500;
+    @include mq($from: md) {
+      background: $color-name--black url(/subscribe/background/md.jpg) 0 0 no-repeat;
+      background-size: cover;
     }
+
+    .flex {
+      &:nth-of-type(3) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+    }
+  }
+
+  .subscribe-section__heading {
+    margin-bottom: calculate-rem(6);
+    font-family: $font-family--alegreya;
+    font-size: calculate-rem(20);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .subscribe-section__description {
+    margin-bottom: calculate-rem(35);
+    font-family: $font-family--source-sans-pro;
+    font-size: calculate-rem(14);
+  }
+
+  .subscribe-section__email-bar {
+    width: 100%;
+    opacity: 0.8;
+
+    @include mq($from: sm) {
+      width: calculate-rem(400);
+    }
+
+    .v-icon {
+      font-size: calculate-rem(24);
+    }
+  }
+
+  .main-footer {
+    height: calculate-rem(245);
+    padding-top: calculate-rem(145);
+  }
+
+  .follow__list {
+    display: flex;
+    margin-bottom: calculate-rem(24);
+    list-style: none;
+  }
+
+  .follow__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calculate-rem(24);
+    height: calculate-rem(24);
+    margin-right: calculate-rem(6);
+    font-size: calculate-rem(14);
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &--facebook {
+      background: $color-name--chambray;
+    }
+
+    &--twitter {
+      background: $color-name--malibu;
+    }
+
+    &--google-plus {
+      background: $color-name--punch;
+    }
+
+    &:hover {
+      background: $color-name--mine-shaft;
+    }
+  }
+
+  .link {
+    color: $color-name--white;
+  }
+
+  .main-footer__copyright {
+    font-size: calculate-rem(13);
+    font-weight: 500;
   }
 </style>

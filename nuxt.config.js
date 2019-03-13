@@ -73,6 +73,7 @@ module.exports = {
       ],
     }],
     'nuxt-webfontloader',
+    'nuxt-mq',
   ],
 
   /*
@@ -94,6 +95,20 @@ module.exports = {
         'Roboto:300,400,500,700',
         'Source+Sans+Pro:300,400,600,700',
       ],
+    },
+  },
+
+  /*
+  ** Media queries
+  */
+  mq: {
+    defaultBreakpoint: 'default',
+    breakpoints: {
+      xs: 600,
+      sm: 960,
+      md: 1264,
+      lg: 1904,
+      xl: Infinity,
     },
   },
 

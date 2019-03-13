@@ -1,7 +1,7 @@
 <template>
   <aside class="sidebar">
     <section class="sidebar__section categories">
-      <h2 class="sidebar__heading">
+      <h2 class="sidebar__heading categories__heading">
         Categories
       </h2>
       <v-divider class="sidebar__divider" />
@@ -180,8 +180,19 @@
 
 <style lang="scss" scoped>
   .sidebar {
+    position: relative;
     width: calculate-rem(300);
-    box-shadow: 5px 80px 5px 0 rgba($color-name--mercury, 0.4);
+    box-shadow: 5px calculate-rem(80) 5px 0 rgba($color-name--mercury, 0.4);
+
+    &::after {
+      position: absolute;
+      bottom: calculate-rem(-85);
+      left: 0;
+      width: calculate-rem(310);
+      height: calculate-rem(85);
+      content: "";
+      background: $color-name--white;
+    }
   }
 
   .sidebar__section:not(:last-of-type) {
@@ -192,9 +203,10 @@
     }
   }
 
-  .sidebar__heading {
+  .sidebar__heading,
+  .categories__heading {
     position: relative;
-    margin-bottom: calculate-rem(9);
+    margin-bottom: calculate-rem(2);
     font-family: $font-family--alegreya;
     font-size: calculate-rem(30);
     font-weight: 700;
