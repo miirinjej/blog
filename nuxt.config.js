@@ -58,18 +58,6 @@ module.exports = {
             'faGooglePlusG',
           ],
         },
-        {
-          set: '@fortawesome/free-regular-svg-icons',
-          icons: [
-            'faEnvelope',
-          ],
-        },
-        {
-          set: '@fortawesome/free-solid-svg-icons',
-          icons: [
-            'faSearch',
-          ],
-        },
       ],
     }],
     'nuxt-webfontloader',
