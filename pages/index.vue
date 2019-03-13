@@ -715,9 +715,9 @@
   }
 
   .follow__list {
+    @extend %list;
     display: flex;
     margin-bottom: calculate-rem(24);
-    list-style: none;
   }
 
   .follow__item {
