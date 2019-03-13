@@ -55,11 +55,11 @@
             :src="post.authorAvatar"
             alt="author avatar"
           >
-          <div class="post__author author">
-            <div
-              :class="{ 'is-hidden': post.isShortened && ($mq === 'lg' || $mq === 'xl') }"
-              class="author__title"
-            >
+          <div
+            class="post__author author"
+            :class="{ 'is-hidden': post.isShortened && ($mq === 'lg' || $mq === 'xl') }"
+          >
+            <div class="author__title">
               Author
               |
               <span class="author__name">
@@ -331,13 +331,6 @@
       .post__header:hover & {
         display: none;
       }
-    }
-  }
-
-  .author {
-    @include mq($from: md) {
-      display: flex;
-      align-items: center;
     }
   }
 
