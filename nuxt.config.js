@@ -16,6 +16,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
     ],
+    noscript: [{ innerHTML: 'Sorry, your browser does not support JavaScript!' }],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
