@@ -31,8 +31,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/stylus/app.styl',
     { src: 'normalize.css' },
+    '~assets/stylus/app.styl',
   ],
 
   /*
