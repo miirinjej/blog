@@ -1,6 +1,6 @@
 <template>
   <v-container
-    tag="main"
+    tag="div"
     fluid
   >
     <header class="main-header js-webp">
@@ -388,15 +388,15 @@
         if (!self.createImageBitmap) return false;
 
         const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-        const blob = await fetch(webpData).then(r => r.blob());
+        const blob = await fetch(webpData).then((r) => r.blob());
         return createImageBitmap(blob).then(() => true, () => false);
       }
 
       (async () => {
         if (await supportsWebp()) {
-          webpElements.forEach(e => e.classList.add('webp'));
+          webpElements.forEach((e) => e.classList.add('webp'));
         } else {
-          webpElements.forEach(e => e.classList.add('no-webp'));
+          webpElements.forEach((e) => e.classList.add('no-webp'));
         }
       })();
     },
